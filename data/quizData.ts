@@ -75,7 +75,7 @@ export const quizQuestions: QuizQuestion[] = [
       { title: "Lumat dengan garpu" },
       { title: "Potongan besar" },
     ],
-    buttonText: "Selesai Quiz!",
+    buttonText: "Mari mengolah",
   },
   {
     id: 4,
@@ -114,7 +114,7 @@ export const quizQuestions: QuizQuestion[] = [
         ],
       },
     ],
-    buttonText: "Selesai Quiz!",
+    buttonText: "Lab Takaran Gizi",
   },
   {
     id: 5,
