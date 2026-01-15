@@ -53,11 +53,11 @@ export const quizQuestions: QuizQuestion[] = [
       "Pilih 5 bahan yang bernutrisi tinggi & aman untuk MPASI bayi 6+ bulan. Hindari jebakan!",
     type: "multi-select-market",
     marketItems: [
-      { emoji: "🍯", name: "Madu (Raw)", isHealthy: false },
+      { emoji: "🥗", name: "Kacang ijo", isHealthy: true },
       { emoji: "🥩", name: "Daging Ayam", isHealthy: true },
       { emoji: "🥚", name: "Telur Ayam", isHealthy: true },
       { emoji: "🍚", name: "Beras", isHealthy: true },
-      { emoji: "🐟", name: "Ikan Salmon", isHealthy: true },
+      { emoji: "🐟", name: "Ikan Kembung", isHealthy: true },
       { emoji: "🥑", name: "Alpukat", isHealthy: true },
       { emoji: "🥕", name: "Wortel", isHealthy: true },
     ],
