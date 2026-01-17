@@ -33,7 +33,6 @@ export default function KamusMpasi() {
           </div>
         </section>
 
-        {/* Tekstur Sesuai Usia */}
         <section className="mb-12">
           <h2 className="text-3xl font-semibold text-orange-700 mb-6">
             Tekstur Sesuai Usia
@@ -53,7 +52,6 @@ export default function KamusMpasi() {
           </div>
         </section>
 
-        {/* Menu Mingguan */}
         <section className="mb-12">
           <h2 className="text-3xl font-semibold text-orange-700 mb-6">
             Contoh Jadwal Menu Mingguan (Bahan Lokal)
@@ -92,7 +90,6 @@ export default function KamusMpasi() {
           </div>
         </section>
 
-        {/* Resep Andalan */}
         <section className="mb-12">
           <h2 className="text-3xl font-semibold text-orange-700 mb-6">
             3 Resep Andalan Chef TNA
@@ -149,7 +146,6 @@ export default function KamusMpasi() {
           </div>
         </section>
 
-        {/* Tips Pengolahan */}
         <section>
           <h2 className="text-3xl font-semibold text-orange-700 mb-6">
             Tips Pengolahan Bahan Lokal
