@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Card from "@/components/Card";
 import { XpHeader } from "@/components/XpHeader";
 import { SingleSelectQuestion } from "@/components/quiz/SingleSelectQuestion";
@@ -11,11 +11,12 @@ import { quizQuestions } from "@/data/quizData";
 
 export default function Quiz() {
   const xp = 100;
-  const level = 1;
   const baseProgress = 0;
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const currentQuestion = quizQuestions[currentQuestionIndex];
+  const [points, setPoints] = useState(0);
+  const [level, setLevel] = useState(1);
 
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(
     null
@@ -38,12 +39,54 @@ export default function Quiz() {
   const subCount = currentQuestion.subQuestions?.length || 0;
 
   const progress =
-    baseProgress +
     ((currentQuestionIndex + (subIndex + 1) / (subCount || 1)) /
       totalQuestions) *
-      (100 - baseProgress);
+    100;
+
+  useEffect(() => {
+    const completedQuestions =
+      currentQuestionIndex +
+      (currentQuestion.type === "sub-questions" ? subIndex / subCount : 0);
+    setLevel(Math.floor(completedQuestions / 2) + 1);
+  }, [currentQuestionIndex, subIndex, currentQuestion.type, subCount]);
 
   const handleNext = () => {
+    let addedPoints = 0;
+    if (currentQuestion.type === "single-select") {
+      const correctIndex = 1;
+      if (selectedOptionIndex === correctIndex) addedPoints += 200;
+    }
+
+    if (currentQuestion.type === "multi-select-market") {
+      selectedMarketIndices.forEach((idx) => {
+        if (currentQuestion.marketItems?.[idx].isHealthy) addedPoints += 50;
+        else addedPoints -= 30;
+      });
+    }
+
+    if (currentQuestion.type === "sub-questions") {
+      if (
+        currentQuestion.subQuestions?.[subIndex].options[selectedOptionIndex!]
+          ?.isCorrect
+      ) {
+        addedPoints += 100;
+      }
+    }
+
+    if (currentQuestion.type === "portion-slider") {
+      const ideal = currentQuestion.idealPortions;
+      if (ideal && isTotal100) {
+        const inRange =
+          portions.karbo >= ideal.karbo.min &&
+          portions.karbo <= ideal.karbo.max &&
+          portions.prohe >= ideal.prohe.min &&
+          portions.prohe <= ideal.prohe.max &&
+          true;
+        addedPoints += inRange ? 150 : 50;
+      }
+    }
+
+    setPoints((prev) => prev + addedPoints);
     if (currentQuestion.type === "sub-questions") {
       if (subIndex < (currentQuestion.subQuestions?.length || 0) - 1) {
         setSubIndex(subIndex + 1);
@@ -53,7 +96,8 @@ export default function Quiz() {
         if (currentQuestionIndex < quizQuestions.length - 1) {
           setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
-          alert("Quiz selesai! Skor akhir: ...");
+          localStorage.setItem("quizPoints", (points + addedPoints).toString());
+          window.location.href = "/quiz/result";
         }
         setSubIndex(0);
       }
@@ -68,13 +112,15 @@ export default function Quiz() {
       if (currentQuestionIndex < quizQuestions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        alert("Quiz selesai! Skor akhir: ...");
+        localStorage.setItem("quizPoints", (points + addedPoints).toString());
+        window.location.href = "/quiz/result";
       }
     } else {
       if (currentQuestionIndex < quizQuestions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        alert("Quiz selesai! Skor akhir: ...");
+        localStorage.setItem("quizPoints", (points + addedPoints).toString());
+        window.location.href = "/quiz/result";
       }
     }
     setSelectedOptionIndex(null);
@@ -84,12 +130,12 @@ export default function Quiz() {
 
   const handleSubSelect = (idx: number) => {
     setSelectedOptionIndex(idx);
-    const currentSub = currentQuestion.subQuestions?.[subIndex];
-    if (currentSub?.options[idx].isCorrect) {
-      setSubFeedback("Benar sekali, Bunda! 👍");
-    } else {
-      setSubFeedback("Kurang tepat, coba lagi ya Bunda 😊");
-    }
+    // const currentSub = currentQuestion.subQuestions?.[subIndex];
+    // if (currentSub?.options[idx].isCorrect) {
+    //   setSubFeedback("Benar sekali, Bunda! 👍");
+    // } else {
+    //   setSubFeedback("Kurang tepat, coba lagi ya Bunda 😊");
+    // }
   };
 
   const totalPortion = Object.values(portions).reduce((a, b) => a + b, 0);
@@ -140,9 +186,10 @@ export default function Quiz() {
       : currentQuestion.type === "multi-select-market"
       ? selectedMarketIndices.length === (currentQuestion.maxSelections || 5)
       : currentQuestion.type === "sub-questions"
-      ? selectedOptionIndex !== null &&
-        currentQuestion.subQuestions?.[subIndex].options[selectedOptionIndex]
-          .isCorrect
+      ? // ? selectedOptionIndex !== null &&
+        //   currentQuestion.subQuestions?.[subIndex].options[selectedOptionIndex]
+        //     .isCorrect
+        selectedOptionIndex !== null
       : currentQuestion.type === "portion-slider"
       ? isTotal100 && status.text === "Seimbang!"
       : true;
@@ -151,7 +198,11 @@ export default function Quiz() {
     <div className="flex flex-col min-h-screen items-center justify-center font-sans bg-orange-100">
       <main className="flex p-4 w-full max-w-md md:max-w-lg text-black flex-col gap-6">
         <Card className="border-0 border-none!">
-          <XpHeader xp={xp} level={level} progressPercentage={progress} />
+          <XpHeader
+            points={points}
+            level={level}
+            progressPercentage={progress}
+          />
         </Card>
 
         <Card>
@@ -199,8 +250,9 @@ export default function Quiz() {
                   question={currentQuestion}
                   subIndex={subIndex}
                   selectedIndex={selectedOptionIndex}
-                  feedback={subFeedback}
-                  onSelect={handleSubSelect}
+                  feedback={null}
+                  // onSelect={handleSubSelect}
+                  onSelect={(idx) => setSelectedOptionIndex(idx)}
                 />
               )}
 

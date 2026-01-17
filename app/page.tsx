@@ -41,7 +41,7 @@ export default function Home() {
             </button>
 
             <button
-              // onClick={() => router.push("/quiz")}
+              onClick={() => router.push("/kamus")}
               className="mt-1 w-full max-w-xs bg-green-500 hover:bg-green-800 text-white text-xl font-bold py-5 rounded-2xl shadow-lg transform transition-all hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-400"
             >
               Kamus Empasi

@@ -1,4 +1,3 @@
-// components/OptionCard.tsx
 "use client";
 
 type OptionCardProps = {
@@ -16,6 +15,8 @@ export function OptionCard({
   isSelected,
   onSelect,
 }: OptionCardProps) {
+  const hasAdditionalInfo = !!(info || examples);
+
   return (
     <div
       onClick={onSelect}
@@ -25,7 +26,7 @@ export function OptionCard({
         ${isSelected ? "bg-orange-500 text-white" : "bg-zinc-100"}
       `}
     >
-      <p className="text-1xl font-medium">{title}</p>
+      <p className="text-sm font-medium">{title}</p>
 
       {isSelected ? (
         <>
@@ -33,7 +34,9 @@ export function OptionCard({
           {examples && <p className="text-sm mt-1 font-light">{examples}</p>}
         </>
       ) : (
-        <p className="text-sm font-light mt-1">Ketuk untuk info</p>
+        hasAdditionalInfo && (
+          <p className="text-sm font-light mt-1">Ketuk untuk info</p>
+        )
       )}
     </div>
   );
