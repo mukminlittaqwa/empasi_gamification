@@ -1,138 +1,3 @@
-// export type QuizQuestion = {
-//   id: number;
-//   title: string;
-//   description: string;
-//   type:
-//     | "single-select"
-//     | "multi-select-market"
-//     | "sub-questions"
-//     | "portion-slider";
-//   options?: { title: string; info?: string; examples?: string }[];
-//   marketItems?: { emoji: string; name: string; isHealthy: boolean }[];
-//   maxSelections?: number;
-//   buttonText: string;
-//   subQuestions?: {
-//     age: string;
-//     question: string;
-//     tip: string;
-//     options: { title: string; isCorrect: boolean }[];
-//   }[];
-//   idealPortions?: {
-//     karbo: { min: number; max: number };
-//     prohe: { min: number; max: number };
-//     pronab: { min: number; max: number };
-//     lemak: { min: number; max: number };
-//     sayurBuah: { min: number; max: number };
-//   };
-// };
-
-// export const quizQuestions: QuizQuestion[] = [
-//   {
-//     id: 1,
-//     title: "Mengenal kebutuhan nutrisi",
-//     description:
-//       "Pilih satu nutrisi utama yang paling penting untuk mencegah stunting",
-//     type: "single-select",
-//     options: [
-//       { title: "Karbohidrat", info: "...", examples: "..." },
-//       {
-//         title: "Protein Hewani (Prohe)",
-//         info: "Paling penting untuk mencegah stunting & otak",
-//         examples: "Daging, telur, ikan",
-//       },
-//       { title: "Protein Nabati", info: "...", examples: "..." },
-//       { title: "Lemak Tambahan", info: "...", examples: "..." },
-//       { title: "Sayuran & Buah", info: "...", examples: "..." },
-//     ],
-//     buttonText: "Lanjut ke Pasar",
-//   },
-//   {
-//     id: 2,
-//     title: "Pasar Bahan Pangan",
-//     description:
-//       "Pilih 5 bahan yang bernutrisi tinggi & aman untuk MPASI bayi 6+ bulan. Hindari jebakan!",
-//     type: "multi-select-market",
-//     marketItems: [
-//       { emoji: "🥗", name: "Kacang ijo", isHealthy: true },
-//       { emoji: "🥩", name: "Daging Ayam", isHealthy: true },
-//       { emoji: "🥚", name: "Telur Ayam", isHealthy: true },
-//       { emoji: "🍚", name: "Beras", isHealthy: true },
-//       { emoji: "🐟", name: "Ikan Kembung", isHealthy: true },
-//       { emoji: "🥑", name: "Alpukat", isHealthy: true },
-//       { emoji: "🥕", name: "Wortel", isHealthy: true },
-//     ],
-//     maxSelections: 5,
-//     buttonText: "Lanjut ke Dapur",
-//   },
-//   {
-//     id: 3,
-//     title: "Olahan Tekstur Tepat",
-//     description: "Pilih tekstur yang sesuai untuk bayi usia 6-8 bulan",
-//     type: "single-select",
-//     options: [
-//       { title: "Halus seperti bubur" },
-//       { title: "Kasar dengan gumpalan kecil" },
-//       { title: "Lumat dengan garpu" },
-//       { title: "Potongan besar" },
-//     ],
-//     buttonText: "Mari mengolah",
-//   },
-//   {
-//     id: 4,
-//     title: "Teknik Mengolah",
-//     description: "Pilih jawaban yang tepat untuk usia bayi tertentu",
-//     type: "sub-questions",
-//     subQuestions: [
-//       {
-//         age: "12 Bulan+",
-//         question: "Menu keluarga sudah boleh diberikan?",
-//         tip: "Tips: Anak 1 tahun sudah bisa makan menu keluarga dengan rasa yang disesuaikan (kurangi garam/gula/pedas).",
-//         options: [
-//           { title: "Belum boleh", isCorrect: false },
-//           { title: "Boleh menu sama dengan keluarga", isCorrect: true },
-//           { title: "Hanya bubur", isCorrect: false },
-//         ],
-//       },
-//       {
-//         age: "9-11 Bulan",
-//         question: "Tekstur makanan yang paling tepat?",
-//         tip: "Tips: Mulai dari nasi tim lembek atau cincang halus, finger food lunak.",
-//         options: [
-//           { title: "Puree halus seperti 6 bulan", isCorrect: false },
-//           { title: "Cincang halus atau nasi tim", isCorrect: true },
-//           { title: "Makanan keluarga utuh", isCorrect: false },
-//         ],
-//       },
-//       {
-//         age: "6-8 Bulan",
-//         question: "Tekstur awal MPASI yang direkomendasikan?",
-//         tip: "Tips: Mulai dengan puree kental/lumat halus untuk adaptasi.",
-//         options: [
-//           { title: "Makanan keluarga cincang", isCorrect: false },
-//           { title: "Puree kental atau mashed", isCorrect: true },
-//           { title: "Finger food besar", isCorrect: false },
-//         ],
-//       },
-//     ],
-//     buttonText: "Lab Takaran Gizi",
-//   },
-//   {
-//     id: 5,
-//     title: "Lab Takaran Gizi",
-//     description:
-//       "Geser slider untuk menakar porsi 'piring MPASI' yang ideal. Ingat: Bayi butuh banyak protein & lemak, tapi serat sedikit saja.",
-//     type: "portion-slider",
-//     buttonText: "Simpan & Lanjut",
-//     idealPortions: {
-//       karbo: { min: 30, max: 40 },
-//       prohe: { min: 20, max: 30 },
-//       pronab: { min: 10, max: 15 },
-//       lemak: { min: 15, max: 20 },
-//       sayurBuah: { min: 15, max: 25 },
-//     },
-//   },
-// ];
-
 export type QuizQuestion = {
   id: number;
   title: string;
@@ -328,7 +193,6 @@ export const quizQuestions: QuizQuestion[] = [
       sayurBuah: { min: 15, max: 25 },
     },
   },
-  // Soal baru 6: Pantangan MPASI
   {
     id: 6,
     title: "Pantangan MPASI",
@@ -363,7 +227,6 @@ export const quizQuestions: QuizQuestion[] = [
     maxSelections: 4, // 4 yang benar
     buttonText: "Lanjut ke Bonus Level!",
   },
-  // Soal baru 7: Jadwal MPASI
   {
     id: 7,
     title: "Jadwal MPASI Harian",
@@ -390,5 +253,100 @@ export const quizQuestions: QuizQuestion[] = [
       },
     ],
     buttonText: "Selesai Petualangan!",
+  },
+  {
+    id: 8,
+    title: "Pengenalan Alergi",
+    description:
+      "Pilih makanan yang sebaiknya **diperkenalkan satu per satu** untuk mengantisipasi alergi pada bayi.",
+    type: "single-select",
+    options: [
+      {
+        title: "Semua makanan langsung diberikan sekaligus",
+        info: "Tidak tepat! Risiko alergi sulit dilacak.",
+      },
+      {
+        title:
+          "Makanan berpotensi alergen diperkenalkan satu per satu (telur, ikan, kacang, susu sapi setelah 12 bulan)",
+        info: "Benar sekali! Perkenalkan satu jenis setiap 3–5 hari untuk pantau reaksi alergi.",
+        isCorrect: true,
+      },
+      {
+        title: "Hindari semua makanan berprotein hewani",
+        info: "Tidak dianjurkan. Prohe sangat penting untuk pertumbuhan.",
+      },
+      {
+        title: "Berikan madu sejak 6 bulan",
+        info: "Sangat berbahaya! Risiko botulisme.",
+      },
+    ],
+    buttonText: "Lanjut ke Level Akhir!",
+  },
+  {
+    id: 9,
+    title: "Mengatasi GTM (Gerakan Tutup Mulut)",
+    description:
+      "Pilih semua cara yang efektif untuk mengatasi GTM pada bayi (pilih semua yang benar!).",
+    type: "multi-select-market",
+    marketItems: [
+      {
+        emoji: "🎨",
+        name: "Beri makanan dengan bentuk & warna menarik",
+        isHealthy: true,
+      },
+      {
+        emoji: "👶",
+        name: "Biarkan bayi memegang makanan sendiri (finger food)",
+        isHealthy: true,
+      },
+      {
+        emoji: "🍽️",
+        name: "Paksa makan sampai habis",
+        isHealthy: false,
+        reason: "Justru bikin trauma & semakin GTM.",
+      },
+      {
+        emoji: "😊",
+        name: "Makan bersama keluarga dengan suasana menyenangkan",
+        isHealthy: true,
+      },
+      {
+        emoji: "📺",
+        name: "Beri makan sambil nonton gadget",
+        isHealthy: false,
+        reason: "Mengganggu fokus makan & bisa bikin overeating.",
+      },
+      {
+        emoji: "⏰",
+        name: "Jadwal makan teratur tapi tidak dipaksa",
+        isHealthy: true,
+      },
+    ],
+    maxSelections: 4,
+    buttonText: "Petualangan selanjutnya!",
+  },
+  {
+    id: 10,
+    title: "Superfood Lokal untuk MPASI",
+    description:
+      "Pilih bahan lokal Indonesia yang sangat kaya nutrisi untuk MPASI bayi.",
+    type: "single-select",
+    options: [
+      {
+        title: "Daun Kelor",
+        info: "Kaya zat besi, vitamin A, C, kalsium – disebut superfood untuk cegah anemia.",
+        isCorrect: true,
+      },
+      {
+        title: "Beras Putih Biasa",
+        info: "Baik sebagai karbo, tapi kurang nutrisi dibanding beras merah atau ubi.",
+      },
+      { title: "Gula Pasir", info: "Tidak dianjurkan untuk bayi <2 tahun." },
+      {
+        title: "Minyak Goreng Biasa",
+        info: "Kurang optimal. Lebih baik minyak kelapa atau santan.",
+      },
+    ],
+    buttonText: "Selesai & Lihat Hasil!",
   },
 ];

@@ -17,7 +17,7 @@ export default function QuizResult() {
   }, []);
 
   const totalMax = 1000;
-  const voucherThreshold = 800;
+  const voucherThreshold = 950;
   const hasVoucher = points >= voucherThreshold;
 
   return (
